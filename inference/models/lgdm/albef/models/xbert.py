@@ -29,13 +29,24 @@ from torch.nn import CrossEntropyLoss, MSELoss
 import torch.nn.functional as F
 
 from transformers.activations import ACT2FN
-from transformers.file_utils import (
-    ModelOutput,
-    add_code_sample_docstrings,
-    add_start_docstrings,
-    add_start_docstrings_to_model_forward,
-    replace_return_docstrings,
-)
+
+try:
+    from transformers.file_utils import (
+        ModelOutput,
+        add_code_sample_docstrings,
+        add_start_docstrings,
+        add_start_docstrings_to_model_forward,
+        replace_return_docstrings,
+    )
+except ImportError:
+    from transformers.utils import (
+        ModelOutput,
+        add_code_sample_docstrings,
+        add_start_docstrings,
+        add_start_docstrings_to_model_forward,
+        replace_return_docstrings,
+    )
+
 from transformers.modeling_outputs import (
     BaseModelOutputWithPastAndCrossAttentions,
     BaseModelOutputWithPoolingAndCrossAttentions,
@@ -47,12 +58,21 @@ from transformers.modeling_outputs import (
     SequenceClassifierOutput,
     TokenClassifierOutput,
 )
-from transformers.modeling_utils import (
-    PreTrainedModel,
-    apply_chunking_to_forward,
-    find_pruneable_heads_and_indices,
-    prune_linear_layer,
-)
+
+from transformers.modeling_utils import PreTrainedModel
+try:
+    from transformers.modeling_utils import (
+        apply_chunking_to_forward,
+        find_pruneable_heads_and_indices,
+        prune_linear_layer,
+    )
+except ImportError:
+    from transformers.pytorch_utils import (
+        apply_chunking_to_forward,
+        find_pruneable_heads_and_indices,
+        prune_linear_layer,
+    )
+
 from transformers.utils import logging
 from transformers.models.bert.configuration_bert import BertConfig
 
