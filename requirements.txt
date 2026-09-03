@@ -37,7 +37,7 @@ Pillow==9.4.0
 piq==0.8.0
 ply==3.11
 pooch
-protobuf==3.20.3
+protobuf
 pycparser
 pyOpenSSL
 pyparsing
